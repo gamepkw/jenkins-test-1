@@ -1,0 +1,16 @@
+{
+  "debug": false,
+  "server": {
+    "address": ":8090"
+  },
+  "context": {
+    "timeout": 5
+  },
+  "database": {
+    "host": "banking-mysql",
+    "port": "3306",
+    "user": "root",
+    "pass": "P@ssw0rd",
+    "name": "banking"
+  }
+}

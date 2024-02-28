@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: jenkins-test-1-load-balancer-service
+  namespace: jenkins-test-1-namespace
+spec:
+  type: LoadBalancer
+  selector:
+    app: jenkins-test-1-app
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8090
