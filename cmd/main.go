@@ -1,12 +1,8 @@
 package main
 
 import (
-	"database/sql"
-	"fmt"
 	"log"
 	_transactionHandler "main/handlers"
-	"net/url"
-	"os"
 
 	_ "github.com/go-sql-driver/mysql"
 
@@ -29,38 +25,6 @@ func init() {
 }
 
 func main() {
-
-	os.Setenv("TZ", "Asia/Bangkok")
-
-	dbHost := viper.GetString(`database.host`)
-	dbPort := viper.GetString(`database.port`)
-	dbUser := viper.GetString(`database.user`)
-	dbPass := viper.GetString(`database.pass`)
-	dbName := viper.GetString(`database.name`)
-	dbconnection := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s", dbUser, dbPass, dbHost, dbPort, dbName)
-	val := url.Values{}
-	val.Add("parseTime", "true")
-	val.Add("loc", "Asia/Bangkok")
-	dsn := fmt.Sprintf("%s?%s", dbconnection, val.Encode())
-	fmt.Println(dsn)
-	dbConn, err := sql.Open(`mysql`, dsn)
-
-	if err != nil {
-		log.Fatal(err)
-	}
-	err = dbConn.Ping()
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	fmt.Println("connect to database successfully")
-
-	defer func() {
-		err := dbConn.Close()
-		if err != nil {
-			log.Fatal(err)
-		}
-	}()
 
 	e := echo.New()
 	_transactionHandler.NewTransactionHandler(e)
