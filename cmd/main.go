@@ -2,7 +2,7 @@ package main
 
 import (
 	"log"
-	_transactionHandler "main/handlers"
+	_handler "main/handlers"
 
 	_ "github.com/go-sql-driver/mysql"
 
@@ -27,6 +27,6 @@ func init() {
 func main() {
 
 	e := echo.New()
-	_transactionHandler.NewTransactionHandler(e)
+	_handler.NewHandler(e)
 	log.Fatal(e.Start("0.0.0.0:8090"))
 }

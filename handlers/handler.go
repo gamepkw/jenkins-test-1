@@ -4,16 +4,15 @@ import (
 	"github.com/labstack/echo/v4"
 )
 
-type TransactionHandler struct {
+type Handler struct {
 }
 
-type TransactionResponse struct {
-	Message string       `json:"message"`
-	Body    *Transaction `json:"body,omitempty"`
+type Response struct {
+	Message string `json:"message"`
 }
 
-func NewTransactionHandler(e *echo.Echo) {
-	handler := &TransactionHandler{}
+func NewHandler(e *echo.Echo) {
+	handler := &Handler{}
 
-	e.GET("/get-all-transaction", handler.GetTransaction)
+	e.GET("/get", handler.Get)
 }
